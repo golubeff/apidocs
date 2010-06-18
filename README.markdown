@@ -39,7 +39,7 @@ You can add descriptions to each parameter like this:
 
 ## Contacts ##
 
-skype: pavel.golubev
-twitter: golubeff
-mail: pavel@golubeff.ru
+1. skype: pavel.golubev
+2. twitter: golubeff
+3. mail: pavel@golubeff.ru
 
