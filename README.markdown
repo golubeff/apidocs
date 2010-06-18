@@ -1,6 +1,6 @@
 ## About ##
 
-Automatically generates docs for your public API from your RSpec.
+Automatically generates HTML docs similar to http://apiwiki.twitter.com/ from your controller specs.
 
 ## Installation ##
 
@@ -37,4 +37,9 @@ You can add descriptions to each parameter like this:
       } 
     )
 
+## Contacts ##
+
+skype: pavel.golubev
+twitter: golubeff
+mail: pavel@golubeff.ru
 
