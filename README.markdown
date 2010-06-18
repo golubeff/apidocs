@@ -6,7 +6,7 @@ Automatically generates docs for your public API from your RSpec.
 
     ./script/plugin install git://github.com/golubeff/apidocs.git
 
-h2. How to use
+## How to use ##
 
 1. Edit app/views/apidocs.erb
 2. Mark every spec, you want to be documented by calling
