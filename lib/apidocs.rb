@@ -1,5 +1,5 @@
 module Apidocs
-  def write_docs
+  def self.write_docs
     @apidocs = @@apidocs
     f = File.open('doc/apidocs.html', 'w')
     template = ERB.new(File.open('app/views/apidocs.erb').read, nil, '%')
@@ -22,13 +22,6 @@ module Apidocs
     @@apidocs ||= {}
     @@apidocs[docs_group] ||= {}
     @@apidocs[docs_group][description_args] = doc
-  end
-
-  if ENV['APIDOCS'] == 'yes'
-    def exit(*args)
-      write_docs
-      Kernel.exit(*args)
-    end
   end
 end
 
