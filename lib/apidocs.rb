@@ -8,6 +8,16 @@ module Apidocs
   end
 
   def it_should_be_documented(options={})
+    options = options.inject({}) do |hash, (k,v)|
+      hash[k] = v.inject({}) do |args, (k1, v1)|
+        args["<b>#{k1}</b>"] = v1.gsub(/([^\n]{80,}?) /, "\\1<br>" )
+        args
+      end
+      hash
+    end
+
+    p request.parameters
+
     doc = {
       :description => description,
       :uri => request.request_uri.gsub(/\?.+$/, ''),

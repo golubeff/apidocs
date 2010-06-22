@@ -1,2 +1,3 @@
 body { font-family: Georgia; }
 #toc { float: right }
+pre { width: 800px; overflow: auto }
