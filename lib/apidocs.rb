@@ -23,7 +23,7 @@ module Apidocs
       :uri => request.request_uri.gsub(/\?.+$/, ''),
       :method => request.request_method,
       :options => options,
-      :request_example => JSON.parse(request.parameters.inject({}) {|hash, (k,v)| hash[k] = v unless ['format', 'action', 'controller', 'profile_id'].include?(k); hash }.to_json),
+      :request_example => JSON.parse(request.parameters.inject({}) {|hash, (k,v)| hash[k] = v unless ['format', 'action', 'controller'].include?(k); hash }.to_json),
       :response_status => response.status,
       :response_body => body_to_json
     }
