@@ -34,8 +34,10 @@
           <pre><%= JSON.pretty_generate(docs[:request_example].dup) %></pre>
           <h3>Response status</h3>
           <p><%= docs[:response_status] %></p>
-          <h3>Response body</h3>
-          <pre><%= JSON.pretty_generate(docs[:response_body]) %></pre>
+          <% if docs[:response_body] %>
+            <h3>Response body</h3>
+            <pre><%= docs[:response_body] %></pre>
+          <% end %>
         <% end %>
       <% end %>
     </div>

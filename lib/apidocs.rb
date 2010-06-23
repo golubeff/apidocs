@@ -16,8 +16,6 @@ module Apidocs
       hash
     end
 
-    p request.parameters
-
     doc = {
       :description => description,
       :uri => request.request_uri.gsub(/\?.+$/, ''),
@@ -25,13 +23,19 @@ module Apidocs
       :options => options,
       :request_example => JSON.parse(request.parameters.inject({}) {|hash, (k,v)| hash[k] = v unless ['format', 'action', 'controller'].include?(k); hash }.to_json),
       :response_status => response.status,
-      :response_body => body_to_json
+      :response_body => format_response_body
     }
 
     docs_group = described_class.name.gsub(/Controller/, '') 
     @@apidocs ||= {}
     @@apidocs[docs_group] ||= {}
     @@apidocs[docs_group][description_args] = doc
+  end
+
+  def format_response_body
+    JSON.pretty_generate(JSON.parse(response.body))
+  rescue JSON::ParserError => e
+    response.body
   end
 end
 
