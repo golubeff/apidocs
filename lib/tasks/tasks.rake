@@ -3,7 +3,7 @@ namespace :spec do
     desc "Generate API documentation"
     task :api do
       ENV['APIDOCS'] = 'yes'
-      Rake::Task['spec:controllers'].invoke
+      Rake::Task['spec'].invoke
     end
   end
 end
