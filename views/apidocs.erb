@@ -1,32 +1,39 @@
+<% @klasses = @apidocs.keys.sort %>
 <html>
   <head>
     <link rel="stylesheet" type="text/css" href="apidocs.css" />
   </head>
   <body>
     <ul id="toc">
-      <% @apidocs.each do |klass, actions| %>
+      <% @klasses.each do |klass| %>
+        <% actions = @apidocs[klass] %>
         <li>
           <a href="#<%= klass %>"><%= klass %></a>
           <ul>
-            <% actions.each do |action, docs| %>
-              <li><a href="#<%= klass %>:<%= action.join(' ').camelize %>"><%= action.join(' ').camelize %></a></li>
+            <% action_names = actions.keys.sort %>
+            <% action_names.each do |action_name| %>
+              <% docs = actions[action_name] %>
+              <li><a href="#<%= klass %>:<%= action_name.join(' ').gsub(/ /, '-') %>"><%= action_name.join(' ') %></a></li>
             <% end %>
           </ul>
         </li>
       <% end %>
     </ul>
     <div id="docs">
-      <% @apidocs.each do |klass, actions| %>
+      <% @klasses.each do |klass| %>
+        <% actions = @apidocs[klass] %>
         <h1><a name="<%= klass %>"><%= klass %></a></h1>
-        <% actions.each do |action, docs| %>
-          <h2><a name="<%= klass %>:<%= action.join(' ').camelize %>"><%= action.join(' ').camelize %></a></h2>
-          <p><%= docs[:description].camelize %></p>
+        <% action_names = actions.keys.sort %>
+        <% action_names.each do |action| %>
+          <% docs = actions[action] %>
+          <h2><a name="<%= klass %>:<%= action.join(' ').gsub(/ /, '-') %>"><%= action.join(' ') %></a></h2>
+          <p><%= docs[:description] %></p>
           <h3>URL</h3>
           <p><%= docs[:uri] %></p>
           <h3>Method</h3>
           <p><%= docs[:method] %></p>
           <% docs[:options].each do |k, v| %>
-            <h3><%= k.to_s.camelize %></h3>
+            <h3><%= k.to_s %></h3>
             <pre><%= JSON.pretty_generate(v) %></pre>
           <% end %>
           <h3>Request example</h3>
