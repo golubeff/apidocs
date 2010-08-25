@@ -30,6 +30,8 @@
           <p><%= docs[:description] %></p>
           <h3>URL</h3>
           <p><%= docs[:uri] %></p>
+          <h3>Requires authorization</h3>
+          <p><%= docs[:session]["user_credentials"] ? "Yes" : "No" %></p>
           <h3>Method</h3>
           <p><%= docs[:method] %></p>
           <% docs[:options].each do |k, v| %>

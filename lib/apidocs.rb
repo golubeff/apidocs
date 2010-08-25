@@ -10,7 +10,7 @@ module Apidocs
   def it_should_be_documented(options={})
     options = options.inject({}) do |hash, (k,v)|
       hash[k] = v.inject({}) do |args, (k1, v1)|
-        args["<b>#{k1}</b>"] = v1.gsub(/([^\n]{80,}?) /, "\\1<br>" )
+        args["<b>#{k1}</b>"] = v1.is_a?(String) ? v1.gsub(/([^\n]{80,}?) /, "\\1<br>" ) : v1
         args
       end
       hash
@@ -23,7 +23,8 @@ module Apidocs
       :options => options,
       :request_example => JSON.parse(request.parameters.inject({}) {|hash, (k,v)| hash[k] = v unless ['format', 'action', 'controller'].include?(k); hash }.to_json),
       :response_status => response.status,
-      :response_body => format_response_body
+      :response_body => format_response_body,
+      :session => request.session.dup
     }
 
     docs_group = described_class.name.gsub(/Controller/, '') 
