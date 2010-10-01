@@ -30,7 +30,7 @@ module Apidocs
     docs_group = described_class.name.gsub(/Controller/, '') 
     @@apidocs ||= {}
     @@apidocs[docs_group] ||= {}
-    @@apidocs[docs_group][description_args] = doc
+    @@apidocs[docs_group][description_args.map(&:to_s)] = doc
   end
 
   def format_response_body
